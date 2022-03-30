@@ -23,21 +23,21 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/datastructures")
 @Api(value = "LinkedListRestController", tags = "REST Apis related to LinkedList!!!!")
-public class LinkedListController {				
-														//end points
+public class LinkedListController {
+	// end points
 	@Autowired
 	private LinkedListService linkedListService;
 
 	@ApiOperation(value = "Add element to the Linkedlist", response = Node.class, notes = "Elements are getting added to the LinkedList")
-	@ApiResponses(value = {@ApiResponse(code = 200, message = "Successfully added element"),
-			  				@ApiResponse(code = 401, message = "Unauthorized - element could not be added")})
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully added element"),
+			@ApiResponse(code = 401, message = "Unauthorized - element could not be added") })
 	@PostMapping("/LinkedlistAddBeginning")
-	public String addToList(@RequestBody Node listNode ) {
+	public String addToList(@RequestBody Node listNode) {
 		log.info("Inside LinkedList add at the Beginning method");
 		String str = linkedListService.addAtTheBiginning(listNode);
 		return Constants.DISPLAYING_THE_CONTENTS_OF + listNode.getData() + str;
 	}
-	
+
 	@ApiOperation(value = "Add element to the Linkedlist at the end", response = Node.class)
 	@PostMapping("/linkedListAddEnd")
 	public String addToLinkedListAtEnd(@RequestBody Node listNode) {
@@ -62,7 +62,7 @@ public class LinkedListController {
 	}
 
 	@ApiOperation(value = "Reading from the Linkedlist file", response = Node.class)
-	@GetMapping("/readFromLinkedListFile") // ?
+	@GetMapping("/readFromLinkedListFile")
 	public String readFromLinkedListFile() {
 		log.info("Inside readFromFile method of LinkedList");
 		linkedListService.readFromFile();
@@ -84,6 +84,5 @@ public class LinkedListController {
 		linkedListService.linkedListSearch(listNode.getData());
 		return Constants.DISPLAYING_THE_CONTENTS_OF + listNode.getData();
 	}
-
 
 }

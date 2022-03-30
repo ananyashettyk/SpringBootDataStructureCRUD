@@ -22,8 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 public class LinkedListServiceImpl implements LinkedListService {
 	private Node head;
 	private Node tail;
-	private Stack<Integer> stack;
-	private List<Integer> list;
 	private FileOutputStream fout;
 	private FileInputStream fin;
 
@@ -32,8 +30,6 @@ public class LinkedListServiceImpl implements LinkedListService {
 
 	LinkedListServiceImpl() {
 		this.head = null;
-		this.stack = new Stack<>();
-		this.list = new ArrayList<>();
 		this.fout = null;
 		this.fin = null;
 		this.tail = null;
@@ -60,7 +56,6 @@ public class LinkedListServiceImpl implements LinkedListService {
 		} else {
 			tail.setNext(temp);
 		}
-
 		tail = temp;
 		linkedListRepository.save(temp);
 		return "element added";
